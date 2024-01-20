@@ -1,0 +1,59 @@
+class Book {
+    private String title;
+    private String author;
+    private boolean available;
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        this.available = true;
+    }
+}
+class Library {
+    private ArrayList<Book> books;
+
+    public Library() {
+        this.books = new ArrayList<>();
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void borrowBook(Book book) {
+        if (book.isAvailable()) {
+            book.setAvailable(false);
+            System.out.println("You have successfully borrowed the book: " + book.getTitle());
+        } else {
+            System.out.println("Sorry, the book is not available for borrowing.");
+        }
+    }
+
+    public void returnBook(Book book) {
+        book.setAvailable(true);
+        System.out.println("You have successfully returned the book: " + book.getTitle());
+    }
+}
+class Member {
+    private String name;
+    private boolean subscribed;
+    public Member(String name) {
+        this.name = name;
+        this.subscribed = false;
+    }
+}
+public class LibraryManagementSystem {
+    public static void main(String[] args) {
+        Book book1 = new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling");
+        Book book2 = new Book("To Kill a Mockingbird", "Harper Lee");
+        Book book3 = new Book("The Great Gatsby", "F. Scott Fitzgerald");
+        Library library = new Library();
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+        Member member = new Member("John");
+        library.borrowBook(book1);
+        library.returnBook(book1);
+    }
+}
+
+
